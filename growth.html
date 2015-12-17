@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<p><canvas id="canvas1" width="600" height="600"></canvas></p>
+<p><canvas id="canvas1" width="800" height="600"></canvas></p>
 
 <script id="script1" type="text/javascript">
 
@@ -20,7 +20,7 @@ function sketchProc(processing)
 {
     processing.setup = function()
     {
-        processing.size(600,600);
+        processing.size(800,600);
         processing.noStroke();
         processing.colorMode(processing.HSB,360,100,100,100); 
         a = processing.TWO_PI;
@@ -31,7 +31,23 @@ function sketchProc(processing)
         currentCount = 1;
     }
 
-    function getRadiusForOldCell(i, currentCount)
+    function setFillForCell(i)
+    {
+        if (i > currentCount - 50)
+        {
+            processing.fill(50, 30);
+        }
+        else if (i > currentCount - 150)
+        {
+            processing.fill(50, 60);
+        }
+        else
+        {
+            processing.fill(50,70);
+        }
+    }
+
+    function getRadiusForOldCell(i)
     {
         if (i == 0) return 1;
 
@@ -39,15 +55,11 @@ function sketchProc(processing)
         {
             return 2;
         }
-        else if (i > currentCount - 2000)
+        else if (i > currentCount - 3000)
         {
             return 3;
         }
-        else if (i > currentCount - 3500)
-        {
-            return 4;
-        }
-        else return 5;
+        else return 4;
     }
 
     function randomDist(maxDimension, newR)
@@ -115,19 +127,8 @@ function sketchProc(processing)
 
         for (var i = 0; i < currentCount; i++)
         {
-            if (i > currentCount - 50)
-            {
-                processing.fill(50, 30);
-            }
-            else if (i > currentCount - 150)
-            {
-                processing.fill(50, 60);
-            }
-            else
-            {
-                processing.fill(50,100);
-            }
-            var factor = getRadiusForOldCell(i, currentCount);
+            setFillForCell(i);
+            var factor = getRadiusForOldCell(i);
             processing.ellipse(x[i],y[i],r[i]*factor,r[i]*factor);
         }
 
