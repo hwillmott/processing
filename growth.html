@@ -1,0 +1,150 @@
+<html>
+<head>
+  <script src="processing.js"></script>
+</head>
+<body>
+
+<p><canvas id="canvas1" width="600" height="600"></canvas></p>
+
+<script id="script1" type="text/javascript">
+
+var maxCount = 5000;
+var currentCount = 0;
+var maxDistanceSoFar = 1;
+var a = 0;
+var x = new Array(maxCount);
+var y = new Array(maxCount);
+var r = new Array(maxCount);
+
+function sketchProc(processing) 
+{
+    processing.setup = function()
+    {
+        processing.size(600,600);
+        processing.noStroke();
+        processing.colorMode(processing.HSB,360,100,100,100); 
+        a = processing.TWO_PI;
+
+        x[0] = processing.width / 2;
+        y[0] = processing.height / 2;
+        r[0] = 2;
+        currentCount = 1;
+    }
+
+    function getRadiusForOldCell(i, currentCount)
+    {
+        if (i == 0) return 1;
+
+        if (i > currentCount - 500)
+        {
+            return 2;
+        }
+        else if (i > currentCount - 2000)
+        {
+            return 3;
+        }
+        else if (i > currentCount - 3500)
+        {
+            return 4;
+        }
+        else return 5;
+    }
+
+    function randomDist(maxDimension, newR)
+    {
+        return parseInt(processing.random(0 + newR, maxDimension-newR));
+    }
+
+    processing.draw = function() 
+    {
+        processing.background(255);
+        processing.strokeWeight(0.5);
+
+        var showDist = false;
+
+        var newR = 2;
+        
+        if (currentCount % 2 == 0)
+        {
+            var newX = randomDist(processing.width, newR);
+            var newY = randomDist(processing.height, newR);          
+        }
+        else
+        {
+            a = a + processing.random();
+            var sin = processing.sin(a);
+            var cos = processing.cos(a);
+            var newX = (processing.width / 2) + parseInt(Math.random() * sin * processing.width / 2);
+            var newY = (processing.height / 2) + parseInt(Math.random() * cos * processing.height / 2);
+        }
+
+        if (showDist)
+        {
+            x[currentCount] = newX;
+            y[currentCount] = newY;
+            r[currentCount] = newR;
+        }
+        else
+        {
+            var closestDist = 100000000;
+            var closestIndex = 0;
+
+            for(var i = 0; i < currentCount; i++)
+            {
+                var newDist = processing.dist(newX, newY, x[i], y[i]);
+                if (newDist < closestDist)
+                {
+                    closestDist = newDist;
+                    closestIndex = i;
+                }
+            }
+
+            var distanceFromRoot = processing.dist(newX, newY, x[0], y[0]);
+            if (distanceFromRoot > maxDistanceSoFar) 
+            {
+                maxDistanceSoFar = distanceFromRoot;
+            }
+
+            var angle = processing.atan2(newY-y[closestIndex], newX-x[closestIndex]);
+            x[currentCount] = x[closestIndex] + processing.cos(angle) * (r[closestIndex]+newR);
+            y[currentCount] = y[closestIndex] + processing.sin(angle) * (r[closestIndex]+newR);
+            r[currentCount] = newR;
+        }
+
+        currentCount++;
+
+        for (var i = 0; i < currentCount; i++)
+        {
+            if (i > currentCount - 50)
+            {
+                processing.fill(50, 30);
+            }
+            else if (i > currentCount - 150)
+            {
+                processing.fill(50, 60);
+            }
+            else
+            {
+                processing.fill(50,100);
+            }
+            var factor = getRadiusForOldCell(i, currentCount);
+            processing.ellipse(x[i],y[i],r[i]*factor,r[i]*factor);
+        }
+
+        if (currentCount >= maxCount)
+        {
+            processing.noLoop();
+        }
+    }    
+  };  
+
+
+
+var canvas = document.getElementById("canvas1");
+
+var p = new Processing(canvas, sketchProc);
+
+
+</script>
+</body>
+</html>
