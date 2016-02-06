@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<languages>
+    <language name="C#" strength="10"/>
+    <language name="Java" strength="10"/>
+    <language name="Python" strength="8"/>
+    <language name="C" strength="6"/>
+    <language name="Processing" strength="5"/>
+    <language name="JavaScript" strength="4"/>
+    <language name="XAML" strength="4"/>
+    <language name="HTML(5)" strength="4"/>
+    <language name="SQL" strength="3"/>
+    <language name="PHP" strength="1"/>
+    <language name="XML" strength="1"/>
+    <language name="CSS" strength="1"/>
+    <language name="ARM" strength="1"/>
+</languages>

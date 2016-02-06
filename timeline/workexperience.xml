@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<workexperience>
+    <job company="University of Victoria (UVic)" position="Student" duration="September 2009 - December 2010" months="12" color="0"><![CDATA[1. Started a combined degree in Earth and Ocean Sciences and Physics,
+2. took a beginner's programming course,
+3. switched to a Major in Computer Science!]]></job>
+    <job company="Travel" position="Backpacking around Southeast Asia" duration="January 2011 - March 2011" months="3" color="1"><![CDATA[Favourite country: Vietnam!]]></job>
+    <job company="OA Solutions" position="Consultant" duration="March 2011 - May 2011" months="6" color="3"><![CDATA[My first industry position!
+Responsibilities:
+    Working on a (legacy) government website written in Java Struts
+    Started with bug fixes and ended up working on the main feature
+    Worked on all parts of the website (from the database to the individual pages)
+Used: PL/SQL, JavaScript, CSS, Java]]></job>
+    <job company="Sierra Systems" position="Consultant" duration="June 2011 - August 2011" months="6" color="5"><![CDATA[This was a project to convert British Columbia's warrant/arrest system to Canadian French for the Quebec Government
+Responsibilities:
+    Creating XDP templates for Adobe PDF forms that take XML data (from the database) and generate a warrant.
+    Editing the database packages that generate the XML files using PL/SQL developer
+    Editing/creating data capture screens in Oracle Forms
+Used: PL/SQL, XDP, Adobe PDF, Oracle Forms]]></job>
+    <job company="UVic" position="Student and Tutor" duration="September 2011 - April 2012" months="4" color="0"><![CDATA[Started tutoring students in Math and Computer Science
+Courses started to get more interesting
+Notable classes:
+    Algorithms and Data Structures
+    Software Development Methods
+    Digital Logic and Organization
+    Discrete and Combinatorial Mathematics (possibly my favourite!)
+Used: Java, C, Verilog, ARM]]></job>
+    <job company="Semaphore Solutions" position="Consultant" duration="May 2012 - August 2012" months="9" color="4"><![CDATA[I was their first employee!
+Responsibilities:
+    Do an analysis of existing content management systems and pick one for the company to use on all future websites.
+    Build the company website from scratch using that content management system
+    Start implementing an app that embeds JPEG data into a WAV file
+Used: Wordpress, PHP, HTML, JavaScript, CSS, Java, JPEG file format specifications, HEX]]></job>
+    <job company="UVic" position="Student and Tutor" duration="September 2012 - April 2013" months="4" color="0"><![CDATA[Notable classes:
+    Operating Systems
+    Object Oriented Software Development
+    Introduction to Artificial Intelligence
+    Numerical Analysis
+Used: C, Java, MATLAB, Python]]></job>
+    <job company="Microsoft" position="Software Engineer in Test" duration="May 2013 - July 2013" months="6" color="2"><![CDATA[On the Visual Studio/XAML Experiences Team
+Responsibilities:
+    Develop tool for automating install of test software
+    Develop tool for sharing test run results with other teams
+    Develop Windows Phone game
+    Design and write tests for new features
+Used: C#, XAML, WPF]]></job>
+    <job company="UVic" position="Student and Tutor" duration="September 2013 - April 2014" months="4" color="0"><![CDATA[Notable classes:
+    Randomized Algorithms
+    Cryptography
+    Undergraduate Directed Project and Undergrad Honours Project (Clustering)
+    Social and Professional Issues
+Used: Java, Python, C
+Graduated with a Bachelors in Computer Science with Honours and Distinction]]></job>
+<job company="Travel" position="Obligatory Post-Graduation Eurotrip" duration="April 2014 - June 2014" months="3" color="1"><![CDATA[Italy, Greece, and Croatia!]]></job>
+    <job company="Microsoft" position="Software Engineer" duration="September 2014 - Present" months="12" color="2" ><![CDATA[On the Visual Studio/XAML Experiences Team
+Responsibilities:
+    Develop new features for Blend
+    Design, write, and maintain automated tests for Visual Studio and Blend
+    Fix bugs and refactor legacy code
+Using: C#, XAML, WPF, C++]]></job>
+</workexperience>
