@@ -12,13 +12,13 @@ void setup()
  colorMode(HSB, 360, 100, 100, 300);
  f = new FlowField();
  ps = new ParticleSystem(new PVector(width / 2 , height / 2));
- gravity = new PVector(0, 0.8);
+ gravity = new PVector(0, 0.3);
 }
 
 void draw()
 {
  background(360);
- if (timer % 20 == 0)
+ if (timer % 10 == 0)
  {
    ps.addParticle();
    timer = 0;

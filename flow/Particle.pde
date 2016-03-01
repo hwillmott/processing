@@ -6,6 +6,7 @@ class Particle
  float lifespan;
  float mass;
  float maxSpeed;
+ int displayTimer;
  
  Particle(PVector l)
  {
@@ -15,6 +16,7 @@ class Particle
    lifespan = 400;
    mass = 10;
    maxSpeed = 1.5;
+   displayTimer = 0;
  }
  
  void applyForce(PVector force)
@@ -31,14 +33,19 @@ class Particle
    velocity.limit(maxSpeed);
    location.add(velocity);
    acceleration.mult(0);
-   lifespan -= 1.5;
+   lifespan -= 1;
  }
   
   void display()
   {
-    strokeWeight(2);
-    stroke(195, 46, 80, lifespan);
-    ellipse(location.x, location.y, 5, 5);
+    if (displayTimer % 5 == 0)
+    {
+      strokeWeight(2);
+      stroke(0, 80, 120, lifespan);
+      ellipse(location.x, location.y, 5, 5);
+      displayTimer = 0;
+    }
+    displayTimer += 1;
   }
   
   void run()
