@@ -13,7 +13,7 @@ class Particle
    location = l.get();
    velocity = new PVector(0,0);
    acceleration = new PVector(0,0);
-   lifespan = 400;
+   lifespan = int(height * 2 / 3);
    mass = 10;
    maxSpeed = 1.5;
    displayTimer = 0;
