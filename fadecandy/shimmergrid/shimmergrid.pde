@@ -14,7 +14,7 @@ void setup()
   opc = new OPC(this, "127.0.0.1", 7890);
   float ledStep = width / leds;
 
-  // Map one 64-LED strip to the center of the window
+  // make a 36 x 6 grid
   opc.simpleLedGrid(36, 6, width/2, height, cellSize, cellSize);
 
   frameRate(30);

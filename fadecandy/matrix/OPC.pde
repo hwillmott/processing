@@ -72,7 +72,7 @@ public class OPC
         y + (i - (numStrips-1)/2.0) * stripSpacing * s, ledSpacing,
         angle, zigzag && (i % 2) == 1);
     }
-  }
+  } 
 
   void simpleLedGrid(int stripLength, int numStrips, float x, float y, float ledSpacing, float stripSpacing)
   {

@@ -15,16 +15,9 @@ void setup()
   // Connect to the local instance of fcserver
   opc = new OPC(this, "127.0.0.1", 7890);
 
-  // Map one 64-LED strip to the center of the window
-  //opc.ledGrid(0, 45, width/2, height-30, width / 100.0, 0, false);
-  //opc.ledGrid(0, 36, 6, 0, 0, 10, 10, 0, false);
-  opc.ledStrip(0 * 64, 36, width/2, height-(10 * 1), 10, 0, false);
-  opc.ledStrip(1 * 64, 36, width/2, height-(10 * 2), 10, 0, false);
-  opc.ledStrip(2 * 64, 36, width/2, height-(10 * 3), 10, 0, false);
-  opc.ledStrip(3 * 64, 36, width/2, height-(10 * 4), 10, 0, false);
-  opc.ledStrip(4 * 64, 36, width/2, height-(10 * 5), 10, 0, false);
-  opc.ledStrip(5 * 64, 36, width/2, height-(10 * 6), 10, 0, false);
-
+  // make a 36 x 6 grid
+  opc.simpleLedGrid(36, 6, width/2, height, 10, 10);
+  
   frameRate(30);
   ps1 = new ParticleSystem(new PVector(width / 2, 0));
   ps2 = new ParticleSystem(new PVector((width / 2) + 50, 0));
