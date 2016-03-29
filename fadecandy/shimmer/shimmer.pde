@@ -1,5 +1,4 @@
 OPC opc;
-PImage dot;
 int leds = 45;
 int cells = 47;
 float [] greenOff = new float[cells];
