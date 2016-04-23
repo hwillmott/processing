@@ -9,9 +9,9 @@ class Particle
  Particle(PVector l)
  {
    location = l.get();
-   velocity = new PVector(0,1);
+   velocity = new PVector(0,random(0.8, 1.5));
    mass = 10;
-   lifespan = 300;
+   lifespan = 250;
    parts = int(random(2, 5));
  }
  
