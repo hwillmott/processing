@@ -9,7 +9,7 @@ Hashtable rules;
  
 void setup() 
 {
-    size(1000,1000);
+    size(1200,1000);
 
     stroke(1);
     noFill();
