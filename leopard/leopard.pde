@@ -5,7 +5,6 @@ PImage foregroundImg;
 void setup()
 {
     size(1092,800);
-    //this.clusters = new ArrayList<Cluster>();
     this.initializeFromFile();
     frameRate(20);
     backgroundImg = loadImage("foreground.png");
