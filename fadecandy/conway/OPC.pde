@@ -83,9 +83,10 @@ public class OPC
 
   void simpleLedGrid(int stripLength, int numStrips, float x, float y, float ledSpacing, float stripSpacing)
   {
+    y = y - stripSpacing / 2;
     for (int i = 0; i < numStrips; i++)
     {
-      ledStrip(i * 64, stripLength, x, (y - stripSpacing / 2) - (i * ledSpacing), ledSpacing, 0, false);
+      ledStrip(i * 64, stripLength, x, y - (i * ledSpacing), ledSpacing, 0, false);
     }
   }
 
