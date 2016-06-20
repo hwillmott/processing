@@ -30,13 +30,6 @@ public class OPC
     parent.registerMethod("draw", this);
   }
 
-  void colorCorrect()
-  {
-    fill(0, 255, 255, 25);
-    rect(0,0, width, 30); 
-    rect(0,30, 220, 10);
-  }
-
   // Set the location of a single LED
   void led(int index, int x, int y)  
   {

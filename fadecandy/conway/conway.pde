@@ -2,6 +2,8 @@ OPC opc;
 float tileSize = 10;
 int numRows = 8;
 int numCols = 32;
+//int hue1 = 0;
+//int hue2 = 60;
 int hue1 = 0;
 int hue2 = 60;
 boolean[][] gameBoard = new boolean[numCols][numRows];
