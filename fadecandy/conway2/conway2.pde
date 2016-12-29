@@ -1,26 +1,26 @@
 OPC opc;
 float tileSize = 10;
-int numRows = 8;
-int numCols = 32;
-//int hue1 = 0;
-//int hue2 = 60;
+int numRows = 6;
+int numCols = 64;
 int hue1 = 0;
-int hue2 = 50;
+int hue2 = 100;
 boolean[][] gameBoard = new boolean[numCols][numRows];
 int[][] hues = new int[numCols][numRows];
 
 void setup()
 {
-	size(320, 80);
-	frameRate(20);
+	size(640, 80);
 	colorMode(HSB, 360, 100, 100);
-	frameRate(6);
+	frameRate(2);
 	noStroke();
 
 	// Connect to the local instance of fcserver
 	opc = new OPC(this, "127.0.0.1", 7890);
 
-	opc.simpleLedGrid(32, 8, width/2, 80, 10, 10);
+
+	  opc.ledStrip(0, 64, width/2, 10, 10, 0, false);
+	  opc.ledStrip(64, 64, width/2, 20 , 10, 0, false);
+	  opc.ledStrip(128, 64, width/2, 30, 10, 0, false);
 	initializeBoard();
 }
 
@@ -34,7 +34,7 @@ void draw()
   		{
   			if (gameBoard[i][j])
   			{
-				fill(hues[i][j], 70, 30);
+				fill(hues[i][j], 60, 50);
 	  			float posX = tileSize * i;
 	  			float posY = tileSize * j;
 	  			rect(posX, posY, tileSize, tileSize);
@@ -105,7 +105,7 @@ int[] countNeighbours(int i, int j)
 
 void addRandomCells()
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		int x = int(random(0, numCols));
 		int y = int(random(numRows));

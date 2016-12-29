@@ -1,32 +1,48 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+
+Minim minim;
+AudioInput in;
+int numBars = 36;
+int bufferStep;
+
 OPC opc;
 float tileSize = 10;
 int numRows = 8;
 int numCols = 32;
-//int hue1 = 0;
-//int hue2 = 60;
 int hue1 = 0;
-int hue2 = 50;
+int hue2 = 60;
 boolean[][] gameBoard = new boolean[numCols][numRows];
 int[][] hues = new int[numCols][numRows];
 
 void setup()
 {
 	size(320, 80);
-	frameRate(20);
 	colorMode(HSB, 360, 100, 100);
-	frameRate(6);
+	frameRate(3);
 	noStroke();
+
+	minim = new Minim(this);
+
+	// use the getLineIn method of the Minim object to get an AudioInput
+	in = minim.getLineIn();
+	bufferStep = int(in.bufferSize() / this.numBars);
 
 	// Connect to the local instance of fcserver
 	opc = new OPC(this, "127.0.0.1", 7890);
 
-	opc.simpleLedGrid(32, 8, width/2, 80, 10, 10);
+
+	  opc.ledStrip(0, 64, width/2, 10, 10, 0, false);
+	  opc.ledStrip(64, 64, width/2, 20 , 10, 0, false);
+	  opc.ledStrip(128, 64, width/2, 30, 10, 0, false);
 	initializeBoard();
 }
 
 void draw()
 {
   	background(0);
+	float addition = in.left.level() + in.right.level();
+	addition *= 4000;
   	
   	for (int i = 0; i < numCols; i++)
   	{
@@ -34,7 +50,7 @@ void draw()
   		{
   			if (gameBoard[i][j])
   			{
-				fill(hues[i][j], 70, 30);
+				fill(hues[i][j], 70, 30 + addition);
 	  			float posX = tileSize * i;
 	  			float posY = tileSize * j;
 	  			rect(posX, posY, tileSize, tileSize);

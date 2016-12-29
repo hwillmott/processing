@@ -1,12 +1,13 @@
 OPC opc;
-int leds = 64;
-int cells = 66;
+int leds = 45;
+int cells = 47;
+float [] greenOff = new float[cells];
+float [] blueOff = new float[cells];
 float rectWidth;
 
 void setup()
 {
   size(800, 50);
-  colorMode(HSB, 360, 100, 100);
 
   // Connect to the local instance of fcserver
   opc = new OPC(this, "127.0.0.1", 7890);
@@ -17,16 +18,32 @@ void setup()
   opc.ledStrip(0, leds, width/2, height-30, ledStep, 0, false);
   frameRate(30);
 
+  for (int i = 0; i < cells; i++)
+  {
+    blueOff[i] = random(10);
+    greenOff[i] = random(10);
+  }
   noStroke();
 }
 
+void update()
+{
+  for (int i = 0; i < cells; i++)
+  {
+    blueOff[i] += 0.05;
+    greenOff[i] += 0.05;
+  }
+}
 
 void draw()
 {
   background(0);
+  update();
   for (int i = 0; i < cells; i++)
   {
-    fill(5 * i, 70, 30);
+    float green = map(noise(greenOff[i]), 0, 1, 50, 150);
+    float blue = map(noise(blueOff[i]), 0, 1, 50, 150);
+    fill(green, 0, blue, 150);
     rect(i * rectWidth, 0, rectWidth, height);
   }
 
