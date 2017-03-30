@@ -4,7 +4,7 @@ boolean expanding = true;
 
 void setup()
 {
-  size(650, 360);
+  size(650, 80);
   frameRate(20);
   colorMode(HSB, 350, 100, 100);
   noStroke();
@@ -12,14 +12,14 @@ void setup()
 	// Connect to the local instance of fcserver
 	opc = new OPC(this, "127.0.0.1", 7890);
 
-  opc.ledStrip(0, 64, 10, height / 2, 5, PI/2, false);
-  opc.ledStrip(64, 64, 20, height / 2, 5, PI/2, false);
-  opc.ledStrip(128, 64, 30, height / 2, 5, PI/2, false);
-  opc.ledStrip(192, 64, 40, height / 2, 5, PI/2, false);
-  opc.ledStrip(256, 64, 50, height / 2, 5, PI/2, false);
-  opc.ledStrip(320, 64, 60, height / 2, 5, PI/2, false);
-  opc.ledStrip(384, 64, 70, height / 2, 5, PI/2, false);
-  opc.ledStrip(448, 64, 80, height / 2, 5, PI/2, false);
+  opc.ledStrip(0, 32, width/2, 5, 10, 0, false);
+  opc.ledStrip(64, 32, width/2, 15 , 10, 0, false);
+  opc.ledStrip(128, 32, width/2, 25, 10, 0, false);
+  opc.ledStrip(192, 32, width/2, 35, 10, 0, false);
+  opc.ledStrip(256, 32, width/2, 45, 10, 0, false);
+  opc.ledStrip(320, 32, width/2, 55, 10, 0, false);
+  opc.ledStrip(384, 32, width/2, 65, 10, 0, false);
+  opc.ledStrip(448, 32, width/2, 75, 10, 0, false);
   //opc.ledStrip(172, 64, 40, height / 2, 5, PI/2, false);
  //opc.ledGrid(0, 64, 8, width/2, 2*height /3, 10, 15, 0, false);
 
