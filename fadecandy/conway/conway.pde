@@ -1,13 +1,18 @@
+import java.util.Arrays;
+
 OPC opc;
 float tileSize = 10;
 int numRows = 8;
 int numCols = 32;
-//int hue1 = 0;
-//int hue2 = 60;
-int hue1 = 0;
-int hue2 = 80;
+int hue1 = -20;
+int hue2 = 60;
 boolean[][] gameBoard = new boolean[numCols][numRows];
+boolean[][] oldBoard = new boolean[numCols][numRows];
 int[][] hues = new int[numCols][numRows];
+int cellChangesThisGen = 0;
+boolean oscillating = false;
+int addCellsX = -1;
+int addCellsY = -1;
 
 void setup()
 {
@@ -19,14 +24,14 @@ void setup()
 	// Connect to the local instance of fcserver
 	opc = new OPC(this, "127.0.0.1", 7890);
 
-	opc.ledStrip(0, 64, width/2, 5, 10, 0, false);
-  opc.ledStrip(64, 64, width/2, 15 , 10, 0, false);
-  opc.ledStrip(128, 64, width/2, 25, 10, 0, false);
-  opc.ledStrip(192, 64, width/2, 35, 10, 0, false);
-  opc.ledStrip(256, 64, width/2, 45, 10, 0, false);
-  opc.ledStrip(320, 64, width/2, 55, 10, 0, false);
-  opc.ledStrip(384, 64, width/2, 65, 10, 0, false);
-  opc.ledStrip(448, 64, width/2, 75, 10, 0, false);
+  opc.ledStrip(0, 32, width/2, 5, 10, 0, true);
+  opc.ledStrip(64, 32, width/2, 15 , 10, 0, true);
+  opc.ledStrip(128, 32, width/2, 25, 10, 0, true);
+  opc.ledStrip(192, 32, width/2, 35, 10, 0, true);
+  opc.ledStrip(256, 32, width/2, 45, 10, 0, true);
+  opc.ledStrip(320, 32, width/2, 55, 10, 0, true);
+  opc.ledStrip(384, 32, width/2, 65, 10, 0, true);
+  opc.ledStrip(448, 32, width/2, 75, 10, 0, true); 
 	initializeBoard();
 }
 
@@ -40,7 +45,7 @@ void draw()
       {
         if (gameBoard[i][j])
         {
-          fill(20, hues[i][j], 50);
+          fill((hues[i][j] % 360), 40, 50);
           float posX = tileSize * i;
           float posY = tileSize * j;
           rect(posX, posY, tileSize, tileSize);
@@ -58,7 +63,7 @@ void initializeBoard()
     for (int j = 0; j < numRows; j++)
     {
       gameBoard[i][j] = random(1) <= 0.5;
-      hues[i][j] = (random(1) <= 0.5) ? hue1 : hue2;
+      hues[i][j] = (i > (numCols / 2)) ? hue1 : hue2;
     }
   }
 }
@@ -75,8 +80,18 @@ void updateBoard()
       boolean currentCell = gameBoard[i][j];
       newBoard[i][j] = (currentCell && (neighbourData[0] == 2 || neighbourData[0] == 3)) || (!currentCell && neighbourData[0] == 3);
       newHues[i][j] = neighbourData[1];
+      if (newBoard[i][j] != gameBoard[i][j])
+      {
+        cellChangesThisGen += 1;
+      }
     }
   }
+  if (Arrays.deepEquals(newBoard, oldBoard)) {
+    println("oscillating ");;
+    oscillating = true;
+  }
+
+  oldBoard = gameBoard;
   gameBoard = newBoard;
   hues = newHues;
 }
@@ -109,13 +124,33 @@ int[] countNeighbours(int i, int j)
   return (new int[]{sumNeighbours - (gameBoard[i][j] ? 1 : 0), newHue});
 }
 
+void mousePressed()
+{
+  addCellsX = int(float(mouseX/(width/numCols)));
+  addCellsY = int(float(mouseY/(height/numRows)));
+}
+
 void addRandomCells()
 {
-  for (int i = 0; i < 2; i++)
+  if ((cellChangesThisGen < 10) || (addCellsX > 0 && addCellsY > 0) || oscillating)
   {
-    int x = int(random(0, numCols));
-    int y = int(random(numRows));
-    gameBoard[x][y] = true;
-    hues[x][y] = (random(1) <= 0.5) ? hue1 : hue2;
+    if(cellChangesThisGen < 10 || oscillating)
+    {
+      addCellsX = int(random(width));
+      addCellsY = int(random(height));
+    }
+
+    int h = (random(1) <= 0.5) ? hue1 : hue2;
+    for (int i = 0; i < 10; i++)
+    {
+      int x = (int(random(addCellsX-3, addCellsX+3)) + numCols) % numCols;
+      int y = (int(random(addCellsY-3, addCellsY+3)) + numRows) % numRows;
+      gameBoard[x][y] = true;
+      hues[x][y] = h;
+    }
   }
+  addCellsX = -1;
+  addCellsY = -1;
+  cellChangesThisGen = 0;
+  oscillating = false;
 }

@@ -6,6 +6,8 @@ class Particle
  float lifespan;
  float mass;
  float maxSpeed;
+ float hue;
+ float sat;
  
  Particle(PVector l)
  {
@@ -15,6 +17,8 @@ class Particle
    lifespan = int(height);
    mass = 30;
    maxSpeed = 1.5;
+   hue = random(0,360);
+   sat = random(20,30);
  }
  
  void applyForce(PVector force)
@@ -37,8 +41,8 @@ class Particle
   void display()
   {
       strokeWeight(2);
-      stroke(40, 80, lifespan);
-      fill(40,80,lifespan);
+      stroke(hue, sat, lifespan);
+      fill(hue,sat,lifespan);
       ellipse(location.x, location.y, 10, 10);
   }
   
