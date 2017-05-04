@@ -12,7 +12,7 @@ class ParticleSystem
   
   void addParticle()
   {
-    particles.add(new Particle(new PVector(random(0, width), 0)));
+    particles.add(new Particle(new PVector(width, random(-height, height))));
   }
   
   void applyForce(FlowField f)

@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-FlowField f;
+FlowField flowField;
 ParticleSystem ps;
 PVector gravity;
 int timer = 0;
@@ -9,9 +9,9 @@ OPC opc;
 void setup()
 {
 	size(320,80);
-	f = new FlowField();
-	ps = new ParticleSystem(new PVector(width / 2 , height / 2));
-	gravity = new PVector(0, 0.3);
+	flowField = new FlowField(0, 2 * PI);
+	ps = new ParticleSystem(new PVector(width, height / 2));
+	gravity = new PVector(-1.5, 0);
 	colorMode(HSB, 360, 100, 100);
 	background(200, 80, 10);
 
@@ -19,14 +19,14 @@ void setup()
 	opc = new OPC(this, "127.0.0.1", 7890);
 
 	// make a 32 x 8 grid
-	opc.ledStrip(0, 32, width/2, 5, 10, 0, false);
-	opc.ledStrip(64, 32, width/2, 15 , 10, 0, false);
-	opc.ledStrip(128, 32, width/2, 25, 10, 0, false);
-	opc.ledStrip(192, 32, width/2, 35, 10, 0, false);
-	opc.ledStrip(256, 32, width/2, 45, 10, 0, false);
-	opc.ledStrip(320, 32, width/2, 55, 10, 0, false);
-	opc.ledStrip(384, 32, width/2, 65, 10, 0, false);
-	opc.ledStrip(448, 32, width/2, 75, 10, 0, false); 
+	opc.ledStrip(0, 32, width/2, 5, 10, 0, true);
+	opc.ledStrip(64, 32, width/2, 15 , 10, 0, true);
+	opc.ledStrip(128, 32, width/2, 25, 10, 0, true);
+	opc.ledStrip(192, 32, width/2, 35, 10, 0, true);
+	opc.ledStrip(256, 32, width/2, 45, 10, 0, true);
+	opc.ledStrip(320, 32, width/2, 55, 10, 0, true);
+	opc.ledStrip(384, 32, width/2, 65, 10, 0, true);
+	opc.ledStrip(448, 32, width/2, 75, 10, 0, true); 
 }
 
 void draw()
@@ -38,10 +38,10 @@ void draw()
 	  ps.addParticle();
 	  timer = 0;
 	}
-	//f.display();
-	ps.applyForce(f);
+	//flowField.display();
+	ps.applyForce(flowField);
 	ps.applyForce(gravity);
 	ps.run();
-	f.update();
+	flowField.update();
 	timer++;
 }

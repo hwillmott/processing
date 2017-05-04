@@ -2,15 +2,18 @@ class FlowField
 {
  PVector[][] field;
  int cols, rows;
+ float lowerAngle, upperAngle;
  int resolution;
  float xo, yo;
  float r;
  
- FlowField()
+ FlowField(float lAngle, float uAngle)
  {
    resolution = 10;
    cols = width / resolution;
    rows = height / resolution;
+   lowerAngle = lAngle;
+   upperAngle = uAngle;
    field = new PVector[cols][rows];
    xo = yo = 4;
    r = 3;
@@ -23,7 +26,7 @@ class FlowField
    {
      for (int j = 0; j < cols; j++)
      {
-       float theta = map(noise(xoff, yoff + (j * 0.1)), 0, 1, PI / 2, 5 * PI / 2);
+       float theta = map(noise(xoff, yoff + (j * 0.1)), 0, 1, lowerAngle, upperAngle);
        field[j][i] = new PVector(cos(theta), sin(theta));
      }
      yoff += 0.1;

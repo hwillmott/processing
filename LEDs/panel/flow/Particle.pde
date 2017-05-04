@@ -14,11 +14,11 @@ class Particle
    location = l.get();
    velocity = new PVector(0,0);
    acceleration = new PVector(0,0);
-   lifespan = int(height);
-   mass = 30;
+   lifespan = int(width);
+   mass = 80;
    maxSpeed = 1.5;
-   hue = random(0,360);
-   sat = random(20,30);
+   hue = random(30,35);
+   sat = random(40,50);
  }
  
  void applyForce(PVector force)
@@ -40,10 +40,11 @@ class Particle
   
   void display()
   {
-      strokeWeight(2);
-      stroke(hue, sat, lifespan);
-      fill(hue,sat,lifespan);
-      ellipse(location.x, location.y, 10, 10);
+    float brightness = map(lifespan, width, 0, 60, -10);
+    strokeWeight(2);
+    stroke(hue, sat, brightness);
+    fill(hue,sat,brightness);
+    ellipse(location.x, location.y, 10, 10);
   }
   
   void run()
