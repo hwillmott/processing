@@ -4,8 +4,8 @@ OPC opc;
 float tileSize = 10;
 int numRows = 8;
 int numCols = 32;
-int[] brightnesses = new int[]{0, 50, 40};
-int[] hues = new int[]{0, 30, 5};
+int[] brightnesses = new int[]{0, 50, 25};
+int[] hues = new int[]{0, 80, 60};
 
 // 0 = dead, 1 = on, 2 = dying
 int[][] gameBoard = new int[numCols][numRows];

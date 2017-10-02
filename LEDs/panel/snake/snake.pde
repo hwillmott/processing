@@ -44,7 +44,6 @@ void spawnSnake()
   snakePresence = new boolean[numCols][numRows];
   snakePresence[snake[0][0]][snake[0][1]] = true;
   tailSize = 1;
-  printSnake();
 }
 
 boolean canMove(int[] coordinates)
@@ -91,7 +90,9 @@ void draw()
   {
       if (snake[i] != null)
       {
-        fill((5*i)%360, 50, 40);
+        int h = (10*i)%360;
+        //int h = (i%3 == 0) ? 0 : 40;
+        fill(h, 50, 40);
         float posX = tileSize * snake[i][0];
         float posY = tileSize * snake[i][1];
         rect(posX, posY, tileSize, tileSize);
