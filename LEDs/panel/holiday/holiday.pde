@@ -1,13 +1,17 @@
 import java.util.Iterator;
 
 FlowField flowField;
+ParticleSystem ps;
+PVector gravity;
 int timer = 0;
 OPC opc;
 
 void setup()
 {
 	size(320,80);
-	flowField = new FlowField(new float[]{-40, 60}, new float[]{-100, 500});
+	flowField = new FlowField(0, 2 * PI);
+	ps = new ParticleSystem(new PVector(width, height / 2));
+	gravity = new PVector(-1.5, 0);
 	colorMode(HSB, 360, 100, 100);
 	background(200, 80, 10);
 
@@ -23,13 +27,21 @@ void setup()
 	opc.ledStrip(320, 32, width/2, 55, 10, 0, true);
 	opc.ledStrip(384, 32, width/2, 65, 10, 0, true);
 	opc.ledStrip(448, 32, width/2, 75, 10, 0, true); 
-	
 }
 
 void draw()
 {
 	background(200, 80, 0);
 	noStroke();
-	flowField.display();
+	if (timer % 7 == 0)
+	{
+	  ps.addParticle();
+	  timer = 0;
+	}
+	//flowField.display();
+	ps.applyForce(flowField);
+	ps.applyForce(gravity);
+	ps.run();
 	flowField.update();
+	timer++;
 }

@@ -45,7 +45,7 @@ void draw()
       {
         if (gameBoard[i][j])
         {
-          fill((hues[i][j] % 360), 40, 50);
+          fill((hues[i][j] % 360), 70, 50);
           float posX = tileSize * i;
           float posY = tileSize * j;
           rect(posX, posY, tileSize, tileSize);

@@ -2,18 +2,18 @@ class FlowField
 {
  float[][] field;
  int cols, rows;
- float lowerBound, upperBound;
+ float[] brightnessBounds;
+ float[] hueBounds;
  int resolution;
  float xo, yo, to;
- float hue = 0;
  
- FlowField(float lBound, float uBound)
+ FlowField(float[] bBounds, float[] hBounds)
  {
    resolution = 10;
    cols = width / resolution;
    rows = height / resolution;
-   lowerBound = lBound;
-   upperBound = uBound;
+   brightnessBounds = bBounds;
+   hueBounds = hBounds;
    field = new float[cols][rows];
    xo = random(10);
    yo = random(10);
@@ -40,8 +40,9 @@ class FlowField
    {
      for (int j = 0; j < rows; j++)
      {
-      float c = map(field[i][j], 0, 1, lowerBound, upperBound);
-      fill(hue, 40, c);
+      float b = map(field[i][j], 0, 1, brightnessBounds[0], brightnessBounds[1]);
+      float h = map(field[i][j], 0, 1, hueBounds[0], hueBounds[1]);
+      fill(h, 40, b);
       rect(i * resolution, j * resolution, resolution, resolution);
      }     
    }
@@ -50,7 +51,6 @@ class FlowField
  void update()
  {
    to += 0.02;
-   hue = (hue + 0.5)%360;
    initializeNoise(xo, yo, to);
  }
 }
