@@ -7,7 +7,8 @@ OPC opc;
 void setup()
 {
 	size(320,80);
-	flowField = new FlowField(new float[]{-40, 60}, new float[]{-100, 500});
+	//flowField = new FlowField(new float[]{-40, 60}, new float[]{-100, 500});
+	flowField = new FlowField(new float[]{-40, 60}, 0);
 	colorMode(HSB, 360, 100, 100);
 	background(200, 80, 10);
 
