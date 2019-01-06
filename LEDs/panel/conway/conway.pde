@@ -13,6 +13,7 @@ int cellChangesThisGen = 0;
 boolean oscillating = false;
 int addCellsX = -1;
 int addCellsY = -1;
+int generations = 0;
 
 void setup()
 {
@@ -46,6 +47,7 @@ void draw()
         if (gameBoard[i][j])
         {
           fill((hues[i][j] % 360), 70, 50);
+          //fill((hues[i][j] % 360), 300, 200);
           float posX = tileSize * i;
           float posY = tileSize * j;
           rect(posX, posY, tileSize, tileSize);
@@ -54,6 +56,11 @@ void draw()
     }
     addRandomCells();
     updateBoard();
+    generations += 1;
+    if (generations == 100){
+      generations = 0;
+      initializeBoard();
+    }
 }
 
 void initializeBoard()
@@ -126,8 +133,14 @@ int[] countNeighbours(int i, int j)
 
 void mousePressed()
 {
+  if (mouseButton == LEFT) {
   addCellsX = int(float(mouseX/(width/numCols)));
   addCellsY = int(float(mouseY/(height/numRows)));
+  }
+  else {
+    generations = 0;
+    initializeBoard();
+  }
 }
 
 void addRandomCells()

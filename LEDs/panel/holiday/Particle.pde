@@ -20,6 +20,19 @@ class Particle
                                             {25, 80},
                                             {0, 80},
                                             {35, 50}};
+  float[][] birthdayColors = new float[][]{{350, 30}, // pink
+                                            {45, 50}, // yellow
+                                            {123, 30}, // teal
+                                          };
+  float[][] halloweenColors = new float[][]{{30, 80}, // orange
+                                            {80, 100}, // green
+                                            {290, 80}, // purple
+                                          };
+  float[][] fallColors = new float[][]{{30, 80}, // orange
+                                            {30, 100}, // brown
+                                            {40, 60}, // yellow
+                                            {20, 60}, // red
+                                          };
   float hue;
   float sat;
  
@@ -31,7 +44,7 @@ class Particle
     lifespan = int(width);
     mass = 80;
     maxSpeed = 1.5;
-    getColor(hannukahColors);
+    getColor(christmasColors);
   }
 
   void getColor(float[][] colors)
