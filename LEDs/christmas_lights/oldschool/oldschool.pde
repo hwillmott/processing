@@ -1,3 +1,4 @@
+import java.util.Random;
 OPC opc;
 
 int leds = 64;
@@ -8,11 +9,27 @@ float cellSize = 10;
 float noiseStep = 0.05;
 int count = 0;
 int countlimit = 10;
+float[][] silver = new float[][]{{10, 10},
+                                  {200, 50}};
+float[][] purple = new float[][]{{300, 80},
+                                  {55, 60}};
+float[][] hannukahColors = new float[][]{{240, 40},
+                                          {40, 30}};
+float[][] christmasColors = new float[][]{{0, 50},
+                                          {70, 80},
+                                          {40, 50}};
+float[][] oldSchoolColors = new float[][]{{320, 80},
+                                          {45, 80},
+                                          {123, 70},
+                                          {234, 70},
+                                          {25, 80},
+                                          {0, 80},
+                                          {35, 50}};
 
 void setup()
 {
   size(640, 30);
-  frameRate(1);
+  frameRate(5);
   colorMode(HSB, 350, 100, 100);
   noStroke();
 
@@ -27,6 +44,12 @@ void setup()
   noStroke();
 }
 
+float[] getColor(float[][] colors)
+{
+  int rnd = new Random().nextInt(colors.length);
+  return colors[rnd];
+}
+
 void update()
 {
   count = 0;
@@ -34,42 +57,9 @@ void update()
     {
       for (int j = 0; j < strips; j++)
       {
-        float r = random(9);
-        if (r < 1)
-        {
-          colors[i][j] = 320;
-          sats[i][j] = 80;
-        }
-        else if (r < 2)
-        {
-          colors[i][j] = 45;
-          sats[i][j] = 80;
-        }
-        else if (r < 3)
-        {
-          colors[i][j] = 123;
-          sats[i][j] = 70; 
-        }
-        else if (r < 4)
-        {
-          colors[i][j] = 234;
-          sats[i][j] = 70;
-        }
-        else if (r < 5)
-        {
-          colors[i][j] = 25;
-          sats[i][j] = 80;
-        }
-        else if (r < 6)
-        {
-          colors[i][j] = 0;
-          sats[i][j] = 80;
-        }
-        else 
-        {
-          colors[i][j] = 35;
-          sats[i][j] = 50;
-        }
+        float[] hueSat = getColor(oldSchoolColors);
+        colors[i][j] = hueSat[0];
+        sats[i][j] = hueSat[1];
       }
     }
 }
