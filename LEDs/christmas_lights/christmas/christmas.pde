@@ -4,7 +4,7 @@ int offset = 0;
 void setup()
 {
   size(660, 40);
-  frameRate(2);
+  frameRate(10);
   colorMode(HSB, 350, 100, 100);
   noStroke();
 
