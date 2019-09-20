@@ -18,14 +18,14 @@ void setup()
 	float ledStep = width / leds;
 
 
-	opc.ledStrip(0, 64, width/2, 5, 10, 0, false);
-	opc.ledStrip(64, 64, width/2, 15 , 10, 0, false);
-	opc.ledStrip(128, 64, width/2, 25, 10, 0, false);
-	opc.ledStrip(192, 64, width/2, 35, 10, 0, false);
-	opc.ledStrip(256, 64, width/2, 45, 10, 0, false);
-	opc.ledStrip(320, 64, width/2, 55, 10, 0, false);
-	opc.ledStrip(384, 64, width/2, 65, 10, 0, false);
-	opc.ledStrip(448, 64, width/2, 75, 10, 0, false);
+	opc.ledStrip(0, 32, width/2, 75, 10, 0, false);
+	opc.ledStrip(64, 32, width/2, 65 , 10, 0, false);
+	opc.ledStrip(128, 32, width/2, 55, 10, 0, false);
+	opc.ledStrip(192, 32, width/2, 45, 10, 0, false);
+	opc.ledStrip(256, 32, width/2, 35, 10, 0, false);
+	opc.ledStrip(320, 32, width/2, 25, 10, 0, false);
+	opc.ledStrip(384, 32, width/2, 15, 10, 0, false);
+	opc.ledStrip(448, 32, width/2, 5, 10, 0, false); 
 
 	ps = new ParticleSystem(cellSize, leds);
 	noStroke();

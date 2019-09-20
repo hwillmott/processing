@@ -70,7 +70,8 @@ void initializeBoard()
     for (int j = 0; j < numRows; j++)
     {
       gameBoard[i][j] = random(1) <= 0.5;
-      hues[i][j] = (i > (numCols / 2)) ? hue1 : hue2;
+      // for green vs red hues[i][j] = (i > (numCols / 2)) ? hue1 : hue2;
+      hues[i][j] = (random(1) <= 0.5) ? hue1 : hue2;
     }
   }
 }

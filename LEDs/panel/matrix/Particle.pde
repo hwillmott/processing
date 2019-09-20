@@ -26,7 +26,7 @@ class Particle
 		noStroke();
 		for (int i = 0; i <= parts; i++)
 		{
-			fill(40,50, 60 - (10 * i));
+			fill(180,10, 60 - (10 * i));
 			rect(location.x, location.y - (10 * i), 10, 10);
 		}
 	}
